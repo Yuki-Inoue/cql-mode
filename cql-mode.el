@@ -36,6 +36,7 @@
        "float" "inet" "int" "list" "map" "set" "text" "timestamp"
        "uuid" "timeuuid" "varchar" "varint"))
 
+;;;###autoload
 (define-derived-mode cql-mode prog-mode "CQL"
   "cql major mode"
 
@@ -48,6 +49,7 @@
 
   )
 
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cql\\'" . cql-mode))
 
 (provide 'cql-mode)
