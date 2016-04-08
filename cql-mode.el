@@ -28,15 +28,14 @@
   (list
    (sql-font-lock-keywords-builder
     'font-lock-keyword-face nil
-    "insert" "into" "values" "table" "create")))
-
-(setq sql-mode-font-lock-object-name
-      ;; cql data types
-      (sql-font-lock-keywords-builder
-       'font-lock-type-face nil
-       "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
-       "float" "inet" "int" "list" "map" "set" "text" "timestamp"
-       "uuid" "timeuuid" "varchar" "varint"))
+    "insert" "into" "values" "table" "create")
+   sql-mode-font-lock-object-name
+   ;; cql data types
+   (sql-font-lock-keywords-builder
+    'font-lock-type-face nil
+    "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
+    "float" "inet" "int" "list" "map" "set" "text" "timestamp"
+    "uuid" "timeuuid" "varchar" "varint")))
 
 ;;;###autoload
 (define-derived-mode cql-mode prog-mode "CQL"
