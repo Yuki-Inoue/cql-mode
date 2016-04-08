@@ -47,45 +47,9 @@
               (list '(cql-mode-font-lock-keywords) nil t
                     (sql-product-font-lock-syntax-alist)))
 
-   ; (when (and (fboundp 'font-lock-mode)
-   ;            (boundp 'font-lock-mode)
-   ;            font-lock-mode)
-   ;   (font-lock-mode-internal nil)
-   ;   (font-lock-mode-internal t))
-
-   ; (add-hook 'font-lock-mode-hook
-   ;           #'(lambda ()
-   ;               ;; Provide defaults for new font-lock faces.
-   ;               (defvar font-lock-builtin-face
-   ;                 (if (boundp 'font-lock-preprocessor-face)
-   ;                     font-lock-preprocessor-face
-   ;                   font-lock-keyword-face))
-   ;               (defvar font-lock-doc-face font-lock-string-face))
-   ;           nil t)
-
   )
 
-; (add-to-list 'auto-mode-alist '("\\.cql\\'" . sql-mode))
 (add-to-list 'auto-mode-alist '("\\.cql\\'" . cql-mode))
-
-; (sql-add-product 'cassandra "Cassandra"
-;                  '(:free-software t))
-;
-;
-;
-;
-; (sql-set-product-feature 'cassandra
-;                          :font-lock
-;                          cql-mode-font-lock-keywords)
-;
-; (defcustom cassandra-program "cassandra"
-;   "Cassandra Program"
-;   :type 'file
-;   :group 'SQL)
-;
-;
-; (sql-set-product-feature 'cassandra
-;                          :sqli-program 'cassandra-program)
 
 (provide 'cql-mode)
 
