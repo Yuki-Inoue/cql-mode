@@ -5,6 +5,7 @@
 ;; Author: Yuki Inoue <inouetakahiroki at gmail.com>
 ;; Version: 0.0.1
 ;; Keywords: cql, cassandra
+;; Package-Requires: ((emacs "24"))
 ;; URL: https://github.com/Yuki-Inoue/cql-mode
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -28,27 +29,30 @@
         'font-lock-keyword-face nil
         "insert" "into" "values" "table" "create")
 
-     sql-mode-font-lock-object-name
+       sql-mode-font-lock-object-name
 
-	 ;; cql data types
-	 (sql-font-lock-keywords-builder
-      'font-lock-type-face nil
-      "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
-      "float" "inet" "int" "list" "map" "set" "text" "timestamp"
-      "uuid" "timeuuid" "varchar" "varint")))
+       ;; cql data types
+       (sql-font-lock-keywords-builder
+        'font-lock-type-face nil
+        "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
+        "float" "inet" "int" "list" "map" "set" "text" "timestamp"
+        "uuid" "timeuuid" "varchar" "varint")))
 
+
+;;;###autoload
 (define-derived-mode cql-mode prog-mode "CQL"
   "cql major mode"
 
   (set-syntax-table (copy-syntax-table sql-mode-syntax-table))
 
   (kill-local-variable 'font-lock-set-defaults)
-  (setq-localfont-lock-defaults
-              (list '(cql-mode-font-lock-keywords) nil t
-                    (sql-product-font-lock-syntax-alist)))
+  (setq font-lock-defaults
+        (list '(cql-mode-font-lock-keywords) nil t
+              (sql-product-font-lock-syntax-alist)))
 
   )
 
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cql\\'" . cql-mode))
 
 (provide 'cql-mode)
