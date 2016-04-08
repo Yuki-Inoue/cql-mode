@@ -43,9 +43,9 @@
   (set-syntax-table (copy-syntax-table sql-mode-syntax-table))
 
   (kill-local-variable 'font-lock-set-defaults)
-  (setq-localfont-lock-defaults
-              (list '(cql-mode-font-lock-keywords) nil t
-                    (sql-product-font-lock-syntax-alist)))
+  (setq font-lock-defaults
+        (list '(cql-mode-font-lock-keywords) nil t
+              (sql-product-font-lock-syntax-alist)))
 
   )
 
