@@ -5,6 +5,7 @@
 ;; Author: Yuki Inoue <inouetakahiroki at gmail.com>
 ;; Version: 0.0.1
 ;; Keywords: cql, cassandra
+;; Package-Requires: ((emacs "24"))
 ;; URL: https://github.com/Yuki-Inoue/cql-mode
 
 ;; This program is free software: you can redistribute it and/or modify
