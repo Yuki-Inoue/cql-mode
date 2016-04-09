@@ -20,35 +20,37 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Code:
+
 (require 'sql)
 
-(setq cql-mode-font-lock-keywords
-      (list
-       (sql-font-lock-keywords-builder
-        'font-lock-keyword-face nil
-        "insert" "into" "values" "table" "create")
+(defvar cql-mode-font-lock-keywords
+  (list
+   (sql-font-lock-keywords-builder
+    'font-lock-keyword-face nil
+    "insert" "into" "values" "table" "create")
+   sql-mode-font-lock-object-name
+   ;; cql data types
+   (sql-font-lock-keywords-builder
+    'font-lock-type-face nil
+    "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
+    "float" "inet" "int" "list" "map" "set" "text" "timestamp"
+    "uuid" "timeuuid" "varchar" "varint")))
 
-     sql-mode-font-lock-object-name
-
-	 ;; cql data types
-	 (sql-font-lock-keywords-builder
-      'font-lock-type-face nil
-      "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
-      "float" "inet" "int" "list" "map" "set" "text" "timestamp"
-      "uuid" "timeuuid" "varchar" "varint")))
-
+;;;###autoload
 (define-derived-mode cql-mode prog-mode "CQL"
   "cql major mode"
 
   (set-syntax-table (copy-syntax-table sql-mode-syntax-table))
 
   (kill-local-variable 'font-lock-set-defaults)
-  (setq-localfont-lock-defaults
-              (list '(cql-mode-font-lock-keywords) nil t
-                    (sql-product-font-lock-syntax-alist)))
+  (setq font-lock-defaults
+        (list '(cql-mode-font-lock-keywords) nil t
+              (sql-product-font-lock-syntax-alist)))
 
   )
 
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cql\\'" . cql-mode))
 
 (provide 'cql-mode)
