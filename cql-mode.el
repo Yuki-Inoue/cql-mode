@@ -3,8 +3,9 @@
 ;; Copyright (C) 2016 Yuki Inoue
 
 ;; Author: Yuki Inoue <inouetakahiroki at gmail.com>
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Keywords: cql, cassandra
+;; Package-Requires: ((emacs "24"))
 ;; URL: https://github.com/Yuki-Inoue/cql-mode
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -20,32 +21,37 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Code:
+
 (require 'sql)
 
-(setq cql-mode-font-lock-keywords
-      (list
-       (sql-font-lock-keywords-builder
-        'font-lock-keyword-face nil
-        "insert" "into" "values" "table" "create")
+(defvar cql-mode-font-lock-keywords
+  (list
+   (sql-font-lock-keywords-builder
+    'font-lock-keyword-face nil
+    "insert" "into" "values" "table" "create"
+    "apply" "batch" "begin" "counter" "exists" "if" "index" "key"
+    "materialized" "not" "on" "primary" "unlogged" "update" "using"
+    "where"
+    )
+   sql-mode-font-lock-object-name
+   ;; cql data types
+   (sql-font-lock-keywords-builder
+    'font-lock-type-face nil
+    "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
+    "float" "inet" "int" "list" "map" "set" "text" "timestamp"
+    "uuid" "timeuuid" "varchar" "varint")))
 
-     sql-mode-font-lock-object-name
-
-	 ;; cql data types
-	 (sql-font-lock-keywords-builder
-      'font-lock-type-face nil
-      "ascii" "bigint" "blob" "boolean" "counter" "decimal" "double"
-      "float" "inet" "int" "list" "map" "set" "text" "timestamp"
-      "uuid" "timeuuid" "varchar" "varint")))
-
+;;;###autoload
 (define-derived-mode cql-mode prog-mode "CQL"
   "cql major mode"
 
   (set-syntax-table (copy-syntax-table sql-mode-syntax-table))
 
   (kill-local-variable 'font-lock-set-defaults)
-  (setq-localfont-lock-defaults
-              (list '(cql-mode-font-lock-keywords) nil t
-                    (sql-product-font-lock-syntax-alist)))
+  (setq font-lock-defaults
+        (list '(cql-mode-font-lock-keywords) nil t
+              (sql-product-font-lock-syntax-alist)))
 
    ; (when (and (fboundp 'font-lock-mode)
    ;            (boundp 'font-lock-mode)
@@ -65,7 +71,7 @@
 
   )
 
-; (add-to-list 'auto-mode-alist '("\\.cql\\'" . sql-mode))
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cql\\'" . cql-mode))
 
 ; (sql-add-product 'cassandra "Cassandra"
