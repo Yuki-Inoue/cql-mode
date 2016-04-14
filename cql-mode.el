@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016 Yuki Inoue
 
 ;; Author: Yuki Inoue <inouetakahiroki at gmail.com>
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Keywords: cql, cassandra
 ;; Package-Requires: ((emacs "24"))
 ;; URL: https://github.com/Yuki-Inoue/cql-mode
@@ -29,7 +29,11 @@
   (list
    (sql-font-lock-keywords-builder
     'font-lock-keyword-face nil
-    "insert" "into" "values" "table" "create")
+    "insert" "into" "values" "table" "create"
+    "apply" "batch" "begin" "counter" "exists" "if" "index" "key"
+    "materialized" "not" "on" "primary" "unlogged" "update" "using"
+    "where"
+    )
    sql-mode-font-lock-object-name
    ;; cql data types
    (sql-font-lock-keywords-builder
