@@ -29,10 +29,13 @@
   (list
    (sql-font-lock-keywords-builder
     'font-lock-keyword-face nil
-    "insert" "into" "values" "table" "create"
-    "apply" "batch" "begin" "counter" "exists" "if" "index" "key"
-    "materialized" "not" "on" "primary" "unlogged" "update" "using"
-    "where"
+    "add" "allow" "alter" "and" "any" "apply" "asc" "authorize" "batch"
+    "begin" "by" "columnfamily" "create" "delete" "desc" "drop"
+    "each_quorum" "from" "grant" "in" "index" "inet" "insert" "into"
+    "keyspace" "keyspaces" "limit" "local_one" "local_quorum" "modify"
+    "of" "on" "one" "order" "password" "primary" "quorum" "rename"
+    "revoke" "schema" "select" "set" "table" "to" "token" "three"
+    "truncate" "two" "unlogged" "update" "use" "using" "where" "with"
     )
    sql-mode-font-lock-object-name
    ;; cql data types
